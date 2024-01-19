@@ -1,23 +1,14 @@
-import matplotlib.pyplot as plt
-import matplotlib.cbook as cbook
-
+#import matplotlib.pyplot as plt
 import pandas as pd
-import numpy as np
+import plotly.express as px
+#import numpy as np
 
-
-plt.rcParams["figure.figsize"] = [7.00, 3.50]
-plt.rcParams["figure.autolayout"] = True
 columns = ["Country", "Avg Salary", "Cost of Living Index"]
 
-df = pd.read_csv("TechCostOfLiving.csv", usecols=columns)
-df.columns = df.columns.str.replace(' ', '')
-print("Contents in csv file:", df)
-plt.scatter(df.CostofLivingIndex, df.AvgSalary)
-plt.show()
+df = pd.read_csv("TechCostOfLiving.csv", index_col=2, usecols=columns)
+df = df.rename(columns={'Avg Salary': 'Avg Salary - Thousands (USD)'})
 
-
-#df = pd.read_csv('TechCostOfLiving.csv')
-
-#df.columns = df.columns.str.replace(' ', '') 
-
-#print(df.to_string())  
+fig = px.scatter(df, x="Avg Salary - Thousands (USD)", y="Cost of Living Index", text="Country", log_x=True, size_max=100)
+fig.update_traces(textposition='top center')
+fig.update_layout(title_text='Avg Tech Wage Vs Cost of Living', title_x=0.5)
+fig.show()
