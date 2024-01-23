@@ -3,10 +3,17 @@ import pandas as pd
 import plotly.express as px
 #import numpy as np
 
-columns = ["Country", "Avg Salary", "Cost of Living Index"]
+columns = ["Country", "AvgSalary", "Cost of Living Index"]
+
+
+
 
 df = pd.read_csv("TechCostOfLiving.csv", index_col=2, usecols=columns)
-df = df.rename(columns={'Avg Salary': 'Avg Salary - Thousands (USD)'})
+
+#print(df)
+
+
+df = df.rename(columns={'AvgSalary': 'Avg Salary - Thousands (USD)'})
 
 fig = px.scatter(df, x="Avg Salary - Thousands (USD)", y="Cost of Living Index", text="Country", log_x=True, size_max=100)
 fig.update_traces(textposition='top center')
