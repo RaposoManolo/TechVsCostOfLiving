@@ -3,6 +3,10 @@ import pandas as pd
 import plotly.express as px
 #import numpy as np
 
+import dash
+from dash import html
+import dash_bootstrap_components as dbc
+
 columns = ["Country", "AvgSalary", "Cost of Living Index"]
 
 
