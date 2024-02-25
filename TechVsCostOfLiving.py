@@ -22,6 +22,8 @@ app = Dash(title="Tech Salaries",
 app.layout = html.Div(
     children=[
         html.H1("Avg Tech Salary Vs Cost of Living", style={"text-align": "center"}),
+        html.Div([dcc.Dropdown(options=[{'label': color, 'value': color}
+                                       for color in ['blue', 'green', 'yello']])]),
         html.Br(),
         html.Div(
             dbc.Tabs([
